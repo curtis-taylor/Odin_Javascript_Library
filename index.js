@@ -32,11 +32,21 @@ function addBookToLibrary(title, author, pages, have_book) {
 }
 
 function displayBooks(book_list) {
-    for(const i of book_list) {
-        console.log("===================")
-        console.log(i);
-        book_screen.
+
+    if(book_screen.children.length >= 1) {
+        book_screen.replaceChildren();
+    } else {
+        for(const i of book_list) {
+            console.log("===================")
+            console.log(i);
+            let book_div = document.createElement('div');
+            book_div.setAttribute("class", "book");
+            book_div.setAttribute("id", )
     }
+
+    }
+
+    
 }
 
 addBookToLibrary('LOTR', 'Tolkien', 500, true);
