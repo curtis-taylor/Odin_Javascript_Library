@@ -36,12 +36,17 @@ function displayBooks(book_list) {
     if(book_screen.children.length >= 1) {
         book_screen.replaceChildren();
     } else {
+        let x = 0;
         for(const i of book_list) {
             console.log("===================")
             console.log(i);
             let book_div = document.createElement('div');
             book_div.setAttribute("class", "book");
-            book_div.setAttribute("id", )
+            book_div.setAttribute("id", x);
+            book_div.textContent = i;
+
+            book_screen.appendChild(book_div)
+            x++;
     }
 
     }
@@ -53,6 +58,7 @@ addBookToLibrary('LOTR', 'Tolkien', 500, true);
 addBookToLibrary('Spiderman', 'Stan Lee', 500, true);
 addBookToLibrary('ROTK', 'Tolkien', 500, true);
 addBookToLibrary('Christmas Carol', 'Charles Dickens', 500, true);
+console.log(":::::::::::")
 
 displayBooks(myLibrary)
 
