@@ -1,4 +1,3 @@
-const book_page_container = document.querySelector('#page_container');
 
 const myLibrary = [];
 
@@ -31,14 +30,19 @@ function addBookToLibrary(title, author, pages, have_book) {
     //console.log(myLibrary);
 }
 
-function displayBooks(library, book_container) {
+function displayBooks(library) {
 
+    const book_container = document.querySelector('#page_container');
     
+    console.log("***");
+    console.log(book_container);
+
     if(book_container.children.length >= 1) {
         book_container.replaceChildren();
     }
      
-    if(book_container.children < 0) {
+    if(book_container.children.length < 1) {
+        console.log("dis")
         let x = 0;
         for(const i of library) {
             console.log("===================")
@@ -63,8 +67,9 @@ addBookToLibrary('LOTR', 'Tolkien', 500, true);
 addBookToLibrary('Spiderman', 'Stan Lee', 500, true);
 addBookToLibrary('ROTK', 'Tolkien', 500, true);
 addBookToLibrary('Christmas Carol', 'Charles Dickens', 500, true);
-console.log(":::::::::::")
+console.log("::::::::::: " )
+console.log(myLibrary)
 
-displayBooks(myLibrary, book_page_container)
+displayBooks(myLibrary);
 
 
