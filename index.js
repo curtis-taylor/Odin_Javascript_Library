@@ -1,4 +1,4 @@
-const book_screen = document.querySelector('#page_container');
+const book_page_container = document.querySelector('#page_container');
 
 const myLibrary = [];
 
@@ -31,13 +31,16 @@ function addBookToLibrary(title, author, pages, have_book) {
     //console.log(myLibrary);
 }
 
-function displayBooks(book_list) {
+function displayBooks(library, book_container) {
 
-    if(book_screen.children.length >= 1) {
-        book_screen.replaceChildren();
-    } else {
+    
+    if(book_container.children.length >= 1) {
+        book_container.replaceChildren();
+    }
+     
+    if(book_container.children < 0) {
         let x = 0;
-        for(const i of book_list) {
+        for(const i of library) {
             console.log("===================")
             console.log(i);
             let book_div = document.createElement('div');
@@ -45,9 +48,11 @@ function displayBooks(book_list) {
             book_div.setAttribute("id", x);
             book_div.textContent = i;
 
-            book_screen.appendChild(book_div)
+            book_container.appendChild(book_div)
             x++;
-    }
+        } 
+
+        console.log(book_container)
 
     }
 
@@ -60,6 +65,6 @@ addBookToLibrary('ROTK', 'Tolkien', 500, true);
 addBookToLibrary('Christmas Carol', 'Charles Dickens', 500, true);
 console.log(":::::::::::")
 
-displayBooks(myLibrary)
+displayBooks(myLibrary, book_page_container)
 
 
