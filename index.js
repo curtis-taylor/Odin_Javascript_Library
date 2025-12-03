@@ -50,7 +50,24 @@ function displayBooks(library) {
             let book_div = document.createElement('div');
             book_div.setAttribute("class", "book");
             book_div.setAttribute("id", x);
-            book_div.textContent = i;
+
+            let title_div = document.createElement('div');
+            title_div.setAttribute("class", "title");
+            title_div.textContent = i.title;
+            
+
+            let author_div = document.createElement('div');
+            author_div.setAttribute("class", "author");
+            author_div.textContent = i.author
+
+            let page_count_div = document.createElement('div');
+            page_count_div.setAttribute("class", "page_count")
+            page_count_div.textContent = i.pages;
+
+
+            book_div.appendChild(title_div);
+            book_div.appendChild(author_div);
+            book_div.appendChild(page_count_div);
 
             book_container.appendChild(book_div)
             x++;
