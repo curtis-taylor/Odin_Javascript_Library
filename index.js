@@ -1,7 +1,7 @@
 
 const myLibrary = [];
 
-function Book(title, author, pages, cover_url, have_book) {
+function Book(title, author, pages, bookcover_url, have_book) {
     if (!new.target) {
         throw Error("You must use the 'new' operator to call the constructor");
     }
@@ -11,7 +11,7 @@ function Book(title, author, pages, cover_url, have_book) {
     this.pages = pages;
     this.have_book = have_book;
     this.id = crypto.randomUUID();
-    this.cover_url = cover_url;
+    this.bookcover_url = bookcover_url;
    
     this.info = function() {
         const i = {title: title, author: author,
@@ -24,8 +24,8 @@ function Book(title, author, pages, cover_url, have_book) {
    
 }
 
-function addBookToLibrary(title, author, pages, have_book) {
-    const book = new Book(title, author, pages, have_book);
+function addBookToLibrary(title, author, pages, bookcover_url, have_book) {
+    const book = new Book(title, author, pages, bookcover_url, have_book);
     //console.log(book.info())
     myLibrary.push(book);
     //console.log(myLibrary);
@@ -54,6 +54,11 @@ function displayBooks(library) {
 
             let bookcover_div = document.createElement('div');
             let bookcover_img = document.createElement('img');
+            bookcover_img.setAttribute('src', i.bookcover_url);
+            bookcover_img.setAttribute('width', '150px');
+
+            bookcover_div.appendChild(bookcover_img);
+            
 
             let title_div = document.createElement('div');
             title_div.setAttribute("class", "title");
@@ -74,6 +79,7 @@ function displayBooks(library) {
             page_count_div.textContent = i.pages + " pages";
 
 
+            book_div.appendChild(bookcover_div);
             book_div.appendChild(title_div);
             book_div.appendChild(author_div);
             book_div.appendChild(page_count_div);
@@ -89,10 +95,10 @@ function displayBooks(library) {
     
 }
 
-addBookToLibrary('LOTR', 'Tolkien', 500, "www", true);
-addBookToLibrary('Spiderman', 'Stan Lee', 500, "www", true);
-addBookToLibrary('ROTK', 'Tolkien', 500, "www", true);
-addBookToLibrary('Christmas Carol', 'Charles Dickens', 500, "www", true);
+addBookToLibrary('LOTR', 'Tolkien', 500, "https://i.cbc.ca/1.4158289.1497366023!/fileImage/httpImage/image.png_gen/derivatives/original_780/book-cover-the-lord-of-the-rings-by-j-r-r-tolkien.png", true);
+addBookToLibrary('Spiderman', 'Stan Lee', 500, "https://i.cbc.ca/1.4158289.1497366023!/fileImage/httpImage/image.png_gen/derivatives/original_780/book-cover-the-lord-of-the-rings-by-j-r-r-tolkien.png", true);
+addBookToLibrary('ROTK', 'Tolkien', 500, "https://m.media-amazon.com/images/G/15/apparel/rcxgs/tile._CB483369412_.gif", true);
+addBookToLibrary('Christmas Carol', 'Charles Dickens', 500, "https://m.media-amazon.com/images/G/15/apparel/rcxgs/tile._CB483369412_.gif", true);
 console.log("::::::::::: " )
 console.log(myLibrary)
 
