@@ -34,7 +34,8 @@ function addBookToLibrary(title, author, pages, bookcover_url, have_book) {
 function displayBooks(library) {
 
     const book_container = document.querySelector('#page_container');
-    //book_container.setAttribute('')
+    book_container.setAttribute('style', 'display: grid; grid-template-columns: repeat(6, 1fr);');
+    
 
     console.log("***");
     console.log(book_container);
