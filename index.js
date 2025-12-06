@@ -34,7 +34,7 @@ function addBookToLibrary(title, author, pages, bookcover_url, have_book) {
 function displayBooks(library) {
 
     const book_container = document.querySelector('#page_container');
-    book_container.setAttribute('style', 'display: grid; grid-template-columns: repeat(6, 1fr);');
+    book_container.setAttribute('style', 'display: grid; grid-template-columns: repeat(5, 1fr);');
     
 
     console.log("***");
@@ -98,9 +98,18 @@ function displayBooks(library) {
 }
 
 addBookToLibrary('LOTR', 'Tolkien', 500, "https://i.cbc.ca/1.4158289.1497366023!/fileImage/httpImage/image.png_gen/derivatives/original_780/book-cover-the-lord-of-the-rings-by-j-r-r-tolkien.png", true);
-addBookToLibrary('Spiderman', 'Stan Lee', 500, "https://i.cbc.ca/1.4158289.1497366023!/fileImage/httpImage/image.png_gen/derivatives/original_780/book-cover-the-lord-of-the-rings-by-j-r-r-tolkien.png", true);
-addBookToLibrary('ROTK', 'Tolkien', 500, "https://m.media-amazon.com/images/G/15/apparel/rcxgs/tile._CB483369412_.gif", true);
-addBookToLibrary('Christmas Carol', 'Charles Dickens', 500, "https://m.media-amazon.com/images/G/15/apparel/rcxgs/tile._CB483369412_.gif", true);
+addBookToLibrary('LOTR: TWO TOWERS', 'Tolkien', 500, "https://i.cbc.ca/1.4158289.1497366023!/fileImage/httpImage/image.png_gen/derivatives/original_780/book-cover-the-lord-of-the-rings-by-j-r-r-tolkien.png", true);
+addBookToLibrary('ROTK', 'Tolkien', 500, "https://i.cbc.ca/1.4158289.1497366023!/fileImage/httpImage/image.png_gen/derivatives/original_780/book-cover-the-lord-of-the-rings-by-j-r-r-tolkien.png", true);
+addBookToLibrary('Christmas Carol', 'Charles Dickens', 500, "https://www.science.smith.edu/climatelit/wp-content/uploads/sites/97/2024/07/812EQMe0FyL-624x953.jpg", true);
+
+addBookToLibrary('KJV Bible', 'Various Authors', 500, "https://cdn.kobo.com/book-images/d637e34d-2856-4a37-8d93-ea7f2cb5bab6/1200/1200/False/king-james-bible-the-holy-bible-authorized-king-james-version-kjv-old-testament-and-new-testaments.jpg", true);
+addBookToLibrary('C Programming', 'Dennis Ritchie', 500, "https://storage.googleapis.com/paysfer_books/9780131103627.jpg", true);
+addBookToLibrary('Fahrenheit 451', 'Ray Bradbury', 500, "https://i.etsystatic.com/7845523/r/il/095621/432071060/il_fullxfull.432071060_5xcf.jpg", true);
+addBookToLibrary('What Color Is Your Parachute?', 'Richard Nelson Bolles', 500, "https://cdn.kobo.com/book-images/9a247440-f0b4-4d97-945a-d05400c2a465/1200/1200/False/what-color-is-your-parachute-2020.jpg", true);
+
+addBookToLibrary('Romeo & Juliet', 'William Shakespeare', 150, "https://i.pinimg.com/736x/7d/a4/d0/7da4d06680ac41dbdcc0c02977b68de1.jpg", true);
+addBookToLibrary('The Richest Man In Babylon?', 'George S. Clason', 200, "https://deepstash.com/_next/image?url=https:%2F%2Fbooks.google.com%2Fbooks%2Fpublisher%2Fcontent%2Fimages%2Ffrontcover%2Ff1tXEAAAQBAJ%3Ffife%3Dw400&w=3840&q=75", true);
+
 console.log("::::::::::: " )
 console.log(myLibrary)
 
