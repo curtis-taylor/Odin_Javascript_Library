@@ -53,11 +53,12 @@ function displayBooks(library) {
             let book_div = document.createElement('div');
             book_div.setAttribute("class", "book");
             book_div.setAttribute("id", x);
+            book_div.style.cssText = "height: 380px;"
 
             let bookcover_div = document.createElement('div');
             let bookcover_img = document.createElement('img');
             bookcover_img.setAttribute('src', i.bookcover_url);
-            bookcover_img.setAttribute('width', '150px');
+            bookcover_img.style.cssText = "width: 150px";
 
             bookcover_div.appendChild(bookcover_img);
             
@@ -80,11 +81,17 @@ function displayBooks(library) {
             title_div.style.fontSize = "18px";
             page_count_div.textContent = i.pages + " pages";
 
+            let delete_button = document.createElement('button');
+            //delete_button.setAttribute('display', "color: white; background-color: lightgreen; height: 30px; margin: 10px;")
+            // delete_button.setAttribute("height", "30px");
+            delete_button.style.cssText = "color: white; background-color: lightgreen; height: 30px; margin: 10px;"
+            delete_button.textContent = "Delete";
 
             book_div.appendChild(bookcover_div);
             book_div.appendChild(title_div);
             book_div.appendChild(author_div);
             book_div.appendChild(page_count_div);
+            book_div.appendChild(delete_button);
 
             book_container.appendChild(book_div)
             x++;
