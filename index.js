@@ -86,6 +86,10 @@ function displayBooks(library) {
             // delete_button.setAttribute("height", "30px");
             delete_button.style.cssText = "color: white; background-color: lightgreen; height: 30px; margin: 10px;"
             delete_button.textContent = "Delete";
+            delete_button.setAttribute("class", "delete_button");
+            let delete_id = "delete_" + String(x);
+            delete_button.setAttribute("id", delete_id);
+
 
             book_div.appendChild(bookcover_div);
             book_div.appendChild(title_div);
@@ -101,8 +105,18 @@ function displayBooks(library) {
 
     }
 
+    const delete_button_loc = document.querySelectorAll('.delete_button').forEach(item => {
+         item.addEventListener('click', e => {
+               e.preventDefault();
+        //e.stopPropagation();
+        e.stopImmediatePropagation();
+         })
+    })
+
     
 }
+
+
 
 addBookToLibrary('LOTR', 'Tolkien', 500, "https://i.cbc.ca/1.4158289.1497366023!/fileImage/httpImage/image.png_gen/derivatives/original_780/book-cover-the-lord-of-the-rings-by-j-r-r-tolkien.png", true);
 addBookToLibrary('LOTR: TWO TOWERS', 'Tolkien', 500, "https://i.cbc.ca/1.4158289.1497366023!/fileImage/httpImage/image.png_gen/derivatives/original_780/book-cover-the-lord-of-the-rings-by-j-r-r-tolkien.png", true);
@@ -121,5 +135,7 @@ console.log("::::::::::: " )
 console.log(myLibrary)
 
 displayBooks(myLibrary);
+
+
 
 
