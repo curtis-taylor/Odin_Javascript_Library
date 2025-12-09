@@ -1,5 +1,20 @@
 
 const myLibrary = [];
+const add_button = document.querySelector('#add_button');
+
+
+ add_button.addEventListener('click', e => {
+        e.preventDefault();
+        //e.stopPropagation();
+        e.stopImmediatePropagation();
+        console.log("add button clicked: ");
+
+        console.log(myLibrary[0]);
+        
+
+
+
+    });
 
 function Book(title, author, pages, bookcover_url, have_book) {
     if (!new.target) {
@@ -38,7 +53,7 @@ function displayBooks(library) {
     
 
     console.log("***");
-    console.log(book_container);
+    // console.log(book_container);
 
     if(book_container.children.length >= 1) {
         book_container.replaceChildren();
@@ -48,8 +63,8 @@ function displayBooks(library) {
         console.log("dis")
         let x = 0;
         for(const i of library) {
-            console.log("===================")
-            console.log(i);
+            //console.log("===================")
+            //console.log(i);
             let book_div = document.createElement('div');
             book_div.setAttribute("class", "book");
             book_div.setAttribute("id", x);
@@ -101,17 +116,28 @@ function displayBooks(library) {
             x++;
         } 
 
-        console.log(book_container)
+        //console.log(book_container)
 
     }
 
+
     const delete_button_loc = document.querySelectorAll('.delete_button').forEach(item => {
-         item.addEventListener('click', e => {
-               e.preventDefault();
+        
+        const test = document.querySelector('#page_container');
+
+        item.addEventListener('click', e => {
+        e.preventDefault();
         //e.stopPropagation();
         e.stopImmediatePropagation();
-         })
-    })
+        
+
+        parentNode = item.parentNode;
+        console.log("button clicked: " + parentNode.id);
+
+        test.removeChild(parentNode);
+
+        });
+    });
 
     
 }
