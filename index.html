@@ -14,19 +14,22 @@
     <script src="index.js"></script>
     
     <dialog id="add_dialog">
-        <p>Greetings, one and all!</p>
+        <p>ENTER INFO FOR NEW BOOK: </p>
         <form method="dialog">
             <label for="booktitle">Book Title</label>
-            <input type="text">
+            <input type="text" id="book_title_text">
 
             <label for="book_author">Book Author</label>
-            <input type="text">
+            <input type="text" id="book_author_id">
 
             <label for="page_count">Page Count</label>
-            <input type="number">
+            <input type="number" id="page_count_text">
+
+            <label for="bookcover_url">Book Cover URL</label>
+            <input type="text" id="bookcover_url_text">
 
 
-            <button>OK</button>
+            <button id="ok">OK</button>
         </form>
     </dialog>
 

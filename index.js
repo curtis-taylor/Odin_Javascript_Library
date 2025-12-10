@@ -2,6 +2,7 @@
 const myLibrary = [];
 const add_button = document.querySelector('#add_button');
 const add_dialog = document.querySelector('#add_dialog');
+const dialog_ok_button = document.querySelector("#ok");
 
  add_button.addEventListener('click', e => {
         const add_dialog = document.querySelector('#add_dialog');
@@ -16,9 +17,30 @@ const add_dialog = document.querySelector('#add_dialog');
 
 
 
+    });
 
-        
+  dialog_ok_button.addEventListener('click', e => {
+        const add_dialog = document.querySelector('#add_dialog');
+        const dialog_title = document.querySelector("#booktitle_text").value;
+        const dialog_author = document.querySelector("#book_author_text")
+        const dialog_page = document.querySelector("#page_count_text")
+        const dialog_coverURL = document.querySelector("#bookcover_url_text")
 
+        const book_container = document.querySelector('#page_container');
+
+
+        book_container.setAttribute('style', 'display: grid; grid-template-columns: repeat(5, 1fr);');
+    
+
+        e.preventDefault();
+        //e.stopPropagation();
+        e.stopImmediatePropagation();
+        console.log("add button clicked: " + dialog_title);
+
+       // addBookToLibrary(dialog_title., 'Tolkien', 500, "https://i.cbc.ca/1.4158289.1497366023!/fileImage/httpImage/image.png_gen/derivatives/original_780/book-cover-the-lord-of-the-rings-by-j-r-r-tolkien.png", true);
+
+
+       
 
 
     });
