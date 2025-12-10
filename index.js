@@ -1,15 +1,22 @@
 
 const myLibrary = [];
 const add_button = document.querySelector('#add_button');
-
+const add_dialog = document.querySelector('#add_dialog');
 
  add_button.addEventListener('click', e => {
+        const add_dialog = document.querySelector('#add_dialog');
         e.preventDefault();
         //e.stopPropagation();
         e.stopImmediatePropagation();
         console.log("add button clicked: ");
 
         console.log(myLibrary[0]);
+
+        add_dialog.showModal();
+
+
+
+
         
 
 
