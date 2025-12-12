@@ -39,11 +39,9 @@ const dialog_ok_button = document.querySelector("#ok");
 
         addBookToLibrary(dialog_title, dialog_author, dialog_page, dialog_coverURL);
 
-
-       
-
-
     });
+
+
 
 function Book(title, author, pages, bookcover_url) {
     if (!new.target) {
@@ -158,7 +156,7 @@ function displayBooks(library) {
 
     }
 
-
+    // DELETE NODE FOR CHOSEN BOOK
     const delete_button_loc = document.querySelectorAll('.delete_button').forEach(item => {
         
         const test = document.querySelector('#page_container');
@@ -176,6 +174,29 @@ function displayBooks(library) {
 
         });
     });
+
+    const read_button_loc = document.querySelectorAll('.read_button').forEach(item => {
+        const test = document.querySelector('#page_container');
+
+        item.addEventListener('click', e => {
+            e.preventDefault();
+            //e.stopPropagation();
+            e.stopImmediatePropagation();
+
+            if(item.textContent == "Mark Read") {
+                 item.textContent = "IS READ";
+                 item.style.cssText = "color: white; background-color: navy; height: 30px; margin: 10px;"
+
+            } else {
+                item.textContent = "Mark Read"
+                item.style.cssText = "color: black; background-color: lightblue; height: 30px; margin: 10px;"
+            }
+
+
+           
+
+        })
+    })
 
     
 }
