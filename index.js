@@ -20,7 +20,7 @@ const dialog_ok_button = document.querySelector("#ok");
     });
 
   dialog_ok_button.addEventListener('click', e => {
-       // const add_dialog = document.querySelector('#add_dialog');
+        const add_dialog = document.querySelector('#add_dialog');
         const dialog_title = document.querySelector("#book_title_text").value;
         const dialog_author = document.querySelector("#book_author_text").value;
         const dialog_page = document.querySelector("#page_count_text").value;
@@ -38,6 +38,8 @@ const dialog_ok_button = document.querySelector("#ok");
         console.log("add button clicked: " + dialog_title);
 
         addBookToLibrary(dialog_title, dialog_author, dialog_page, dialog_coverURL);
+
+        add_dialog.close();
 
     });
 
@@ -67,10 +69,18 @@ function Book(title, author, pages, bookcover_url) {
    
 }
 
+function checkIfIdExists(id) {
+    const element = document.querySelector(`#x${id}`); // Use '#' to select by ID
+    return element !== null; // Returns true if exists, false otherwise
+}
+
 function addBookToLibrary(title, author, pages, bookcover_url) {
     const book = new Book(title, author, pages, bookcover_url);
     //console.log(book.info())
     myLibrary.push(book);
+
+    displayBooks(myLibrary);
+
     //console.log(myLibrary);
 }
 
@@ -79,82 +89,93 @@ function displayBooks(library) {
     const book_container = document.querySelector('#page_container');
     book_container.setAttribute('style', 'display: grid; grid-template-columns: repeat(5, 1fr);');
     
+    console.log(library[library.length - 1])
+    console.log("+++")
+
+    let i = library[library.length - 1];
 
     console.log("***");
     // console.log(book_container);
 
+    /*
     if(book_container.children.length >= 1) {
         book_container.replaceChildren();
-    }
+    } */
      
-    if(book_container.children.length < 1) {
+   // if(book_container.children.length < 1) {
         console.log("dis")
-        let x = 0;
-        for(const i of library) {
-            //console.log("===================")
-            //console.log(i);
-            let book_div = document.createElement('div');
-            book_div.setAttribute("class", "book");
-            book_div.setAttribute("id", x);
-            book_div.style.cssText = "height: 380px;"
+        let x = String(library.length);
+       // for(const i of library) {
+        //console.log("===================")
+        //console.log(i);
+        let book_div = document.createElement('div');
+        book_div.setAttribute("class", "book");
 
-            let bookcover_div = document.createElement('div');
-            let bookcover_img = document.createElement('img');
-            bookcover_img.setAttribute('src', i.bookcover_url);
-            bookcover_img.style.cssText = "width: 150px";
-
-            bookcover_div.appendChild(bookcover_img);
-            
-
-            let title_div = document.createElement('div');
-            title_div.setAttribute("class", "title");
-            title_div.style.fontFamily = "'Arial', sans-serif";
-            title_div.style.fontSize = "22px";
-            title_div.style.fontWeight = "bold";
-            title_div.textContent = i.title;
-            
-
-            let author_div = document.createElement('div');
-            author_div.setAttribute("class", "author");
-            title_div.style.fontSize = "18px";
-            author_div.textContent = i.author;
-
-            let page_count_div = document.createElement('div');
-            page_count_div.setAttribute("class", "page_count");
-            title_div.style.fontSize = "18px";
-            page_count_div.textContent = i.pages + " pages";
-
-            let delete_button = document.createElement('button');
-            //delete_button.setAttribute('display', "color: white; background-color: lightgreen; height: 30px; margin: 10px;")
-            // delete_button.setAttribute("height", "30px");
-            delete_button.style.cssText = "color: white; background-color: lightgreen; height: 30px; margin: 10px;"
-            delete_button.textContent = "Delete";
-            delete_button.setAttribute("class", "delete_button");
-            let delete_id = "delete_" + String(x);
-            delete_button.setAttribute("id", delete_id);
-
-            let read_button = document.createElement("button");
-            read_button.style.cssText = "color: black; background-color: lightblue; height: 30px; margin: 10px;"
-            read_button.textContent = "Mark Read";
-            read_button.setAttribute("class", "read_button");
-            let read_id = "read_" + String(x);
-            read_button.setAttribute("id", read_id);
-
-
-            book_div.appendChild(bookcover_div);
-            book_div.appendChild(title_div);
-            book_div.appendChild(author_div);
-            book_div.appendChild(page_count_div);
-            book_div.appendChild(delete_button);
-            book_div.appendChild(read_button);
-
-            book_container.appendChild(book_div)
+        
+        while(checkIfIdExists(x) == true) {
             x++;
+            console.log("no exist");
         } 
+
+        book_div.setAttribute("id", x);
+        book_div.style.cssText = "height: 380px;"
+
+        let bookcover_div = document.createElement('div');
+        let bookcover_img = document.createElement('img');
+        bookcover_img.setAttribute('src', i.bookcover_url);
+        bookcover_img.style.cssText = "width: 150px";
+
+        bookcover_div.appendChild(bookcover_img);
+        
+        let title_div = document.createElement('div');
+        title_div.setAttribute("class", "title");
+        title_div.style.fontFamily = "'Arial', sans-serif";
+        title_div.style.fontSize = "22px";
+        title_div.style.fontWeight = "bold";
+        title_div.textContent = i.title;
+        
+
+        let author_div = document.createElement('div');
+        author_div.setAttribute("class", "author");
+        title_div.style.fontSize = "18px";
+        author_div.textContent = i.author;
+
+        let page_count_div = document.createElement('div');
+        page_count_div.setAttribute("class", "page_count");
+        title_div.style.fontSize = "18px";
+        page_count_div.textContent = i.pages + " pages";
+
+        let delete_button = document.createElement('button');
+        //delete_button.setAttribute('display', "color: white; background-color: lightgreen; height: 30px; margin: 10px;")
+        // delete_button.setAttribute("height", "30px");
+        delete_button.style.cssText = "color: white; background-color: lightgreen; height: 30px; margin: 10px;"
+        delete_button.textContent = "Delete";
+        delete_button.setAttribute("class", "delete_button");
+        let delete_id = "delete_" + String(x);
+        delete_button.setAttribute("id", delete_id);
+
+        let read_button = document.createElement("button");
+        read_button.style.cssText = "color: black; background-color: lightblue; height: 30px; margin: 10px;"
+        read_button.textContent = "Mark Read";
+        read_button.setAttribute("class", "read_button");
+        let read_id = "read_" + String(x);
+        read_button.setAttribute("id", read_id);
+
+
+        book_div.appendChild(bookcover_div);
+        book_div.appendChild(title_div);
+        book_div.appendChild(author_div);
+        book_div.appendChild(page_count_div);
+        book_div.appendChild(delete_button);
+        book_div.appendChild(read_button);
+
+        book_container.appendChild(book_div)
+        x++;
+    //    } 
 
         //console.log(book_container)
 
-    }
+  //  }
 
     // DELETE NODE FOR CHOSEN BOOK
     const delete_button_loc = document.querySelectorAll('.delete_button').forEach(item => {
@@ -219,7 +240,7 @@ addBookToLibrary('The Richest Man In Babylon?', 'George S. Clason', 200, "https:
 console.log("::::::::::: " )
 console.log(myLibrary)
 
-displayBooks(myLibrary);
+//displayBooks(myLibrary);
 
 
 
