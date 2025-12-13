@@ -13,23 +13,26 @@
     <div id="page_container"></div>
     
     <dialog id="add_dialog">
+        <button id="close">X</button><br><br>
         <p>ENTER INFO FOR NEW BOOK: </p>
         <form method="dialog">
+            
             <label for="booktitle">Book Title</label>
-            <input type="text" id="book_title_text">
+            <input type="text" id="book_title_text" required minlength="1", maxlength="30"><br><br>
 
             <label for="book_author">Book Author</label>
-            <input type="text" id="book_author_text">
+            <input type="text" id="book_author_text" required minlength="1", maxlength="30"><br><br>
 
             <label for="page_count">Page Count</label>
-            <input type="number" id="page_count_text">
+            <input type="number" id="page_count_text" required min=1 max=3000><br><br>
 
             <label for="bookcover_url">Book Cover URL</label>
-            <input type="text" id="bookcover_url_text">
+            <input type="text" id="bookcover_url_text" required><br><br>
 
             <button id="ok">OK</button>
         </form>
     </dialog>
+
 
     <script src="index.js"></script>
 

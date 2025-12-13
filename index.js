@@ -3,15 +3,16 @@ const myLibrary = [];
 const add_button = document.querySelector('#add_button');
 const add_dialog = document.querySelector('#add_dialog');
 const dialog_ok_button = document.querySelector("#ok");
+const dialog_close_button = document.querySelector('#close');
 
  add_button.addEventListener('click', e => {
         const add_dialog = document.querySelector('#add_dialog');
         e.preventDefault();
         //e.stopPropagation();
         e.stopImmediatePropagation();
-        console.log("add button clicked: ");
+        //console.log("add button clicked: ");
 
-        console.log(myLibrary[0]);
+        //console.log(myLibrary[0]);
 
         add_dialog.showModal();
 
@@ -28,14 +29,13 @@ const dialog_ok_button = document.querySelector("#ok");
         const book_container = document.querySelector('#page_container');
 
 
-        console.log("add button clicked: " + dialog_title);
+
         book_container.setAttribute('style', 'display: grid; grid-template-columns: repeat(5, 1fr);');
     
 
         e.preventDefault();
         //e.stopPropagation();
         e.stopImmediatePropagation();
-        console.log("add button clicked: " + dialog_title);
 
         addBookToLibrary(dialog_title, dialog_author, dialog_page, dialog_coverURL);
 
@@ -43,6 +43,9 @@ const dialog_ok_button = document.querySelector("#ok");
 
     });
 
+dialog_close_button.addEventListener('click', e => {
+    add_dialog.close();
+})
 
 
 function Book(title, author, pages, bookcover_url) {
@@ -69,17 +72,25 @@ function Book(title, author, pages, bookcover_url) {
    
 }
 
+//FUNCTION CHECK IF AN ID EXISTS AND RETURNS TRUE OR FALSE
 function checkIfIdExists(id) {
     const element = document.querySelector(`#x${id}`); // Use '#' to select by ID
     return element !== null; // Returns true if exists, false otherwise
 }
 
 function addBookToLibrary(title, author, pages, bookcover_url) {
-    const book = new Book(title, author, pages, bookcover_url);
-    //console.log(book.info())
-    myLibrary.push(book);
 
-    displayBooks(myLibrary);
+    if((title.length > 0) && (author.length > 0) && (pages > 0) && (bookcover_url.length > 4)) {
+        const book = new Book(title, author, pages, bookcover_url);
+        //console.log(book.info())
+         myLibrary.push(book);
+
+        displayBooks(myLibrary);
+
+    } else {
+
+    }
+    
 
     //console.log(myLibrary);
 }
@@ -89,12 +100,11 @@ function displayBooks(library) {
     const book_container = document.querySelector('#page_container');
     book_container.setAttribute('style', 'display: grid; grid-template-columns: repeat(5, 1fr);');
     
-    console.log(library[library.length - 1])
-    console.log("+++")
+    //console.log(library[library.length - 1])
+    //onsole.log("+++")
 
     let i = library[library.length - 1];
 
-    console.log("***");
     // console.log(book_container);
 
     /*
@@ -103,7 +113,6 @@ function displayBooks(library) {
     } */
      
    // if(book_container.children.length < 1) {
-        console.log("dis")
         let x = String(library.length);
        // for(const i of library) {
         //console.log("===================")
@@ -114,7 +123,6 @@ function displayBooks(library) {
         
         while(checkIfIdExists(x) == true) {
             x++;
-            console.log("no exist");
         } 
 
         book_div.setAttribute("id", x);
@@ -130,24 +138,32 @@ function displayBooks(library) {
         let title_div = document.createElement('div');
         title_div.setAttribute("class", "title");
         title_div.style.fontFamily = "'Arial', sans-serif";
-        title_div.style.fontSize = "22px";
+        title_div.style.fontSize = "20px";
         title_div.style.fontWeight = "bold";
         title_div.textContent = i.title;
         
 
         let author_div = document.createElement('div');
         author_div.setAttribute("class", "author");
-        title_div.style.fontSize = "18px";
+        author_div.style.fontSize = "18px";
         author_div.textContent = i.author;
+        author_div.style.fontFamily = "'Arial', sans-serif";
 
         let page_count_div = document.createElement('div');
         page_count_div.setAttribute("class", "page_count");
-        title_div.style.fontSize = "18px";
-        page_count_div.textContent = i.pages + " pages";
+        page_count_div.style.fontSize = "18px";
+        page_count_div.style.fontFamily = "'Arial', sans-serif";
+
+        if(i.pages > 3000) {
+            page_count_div.textContent =  "3000+ pages";
+        } else {
+             page_count_div.textContent = i.pages + " pages";
+        }
+        
+
+        
 
         let delete_button = document.createElement('button');
-        //delete_button.setAttribute('display', "color: white; background-color: lightgreen; height: 30px; margin: 10px;")
-        // delete_button.setAttribute("height", "30px");
         delete_button.style.cssText = "color: white; background-color: lightgreen; height: 30px; margin: 10px;"
         delete_button.textContent = "Delete";
         delete_button.setAttribute("class", "delete_button");
@@ -156,7 +172,7 @@ function displayBooks(library) {
 
         let read_button = document.createElement("button");
         read_button.style.cssText = "color: black; background-color: lightblue; height: 30px; margin: 10px;"
-        read_button.textContent = "Mark Read";
+        read_button.textContent = "UnRead";
         read_button.setAttribute("class", "read_button");
         let read_id = "read_" + String(x);
         read_button.setAttribute("id", read_id);
@@ -177,7 +193,7 @@ function displayBooks(library) {
 
   //  }
 
-    // DELETE NODE FOR CHOSEN BOOK
+    // DELETE SECTION OF CHOSEN BOOK
     const delete_button_loc = document.querySelectorAll('.delete_button').forEach(item => {
         
         const test = document.querySelector('#page_container');
@@ -189,7 +205,7 @@ function displayBooks(library) {
         
 
         parentNode = item.parentNode;
-        console.log("button clicked: " + parentNode.id);
+        //console.log("button clicked: " + parentNode.id);
 
         test.removeChild(parentNode);
 
@@ -204,12 +220,12 @@ function displayBooks(library) {
             //e.stopPropagation();
             e.stopImmediatePropagation();
 
-            if(item.textContent == "Mark Read") {
-                 item.textContent = "IS READ";
+            if(item.textContent == "UnRead") {
+                 item.textContent = "READ";
                  item.style.cssText = "color: white; background-color: navy; height: 30px; margin: 10px;"
 
             } else {
-                item.textContent = "Mark Read"
+                item.textContent = "UnRead"
                 item.style.cssText = "color: black; background-color: lightblue; height: 30px; margin: 10px;"
             }
 
