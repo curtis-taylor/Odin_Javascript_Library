@@ -120,18 +120,19 @@ function displayBooks(library) {
         let book_div = document.createElement('div');
         book_div.setAttribute("class", "book");
 
+
         
         while(checkIfIdExists(x) == true) {
             x++;
         } 
 
         book_div.setAttribute("id", x);
-        book_div.style.cssText = "height: 380px;"
+        book_div.style.cssText = "background-color: pink; height: 470px; width: 310px;"
 
         let bookcover_div = document.createElement('div');
         let bookcover_img = document.createElement('img');
         bookcover_img.setAttribute('src', i.bookcover_url);
-        bookcover_img.style.cssText = "width: 150px";
+        bookcover_img.style.cssText = "width: 199px; height: 300px;";
 
         bookcover_div.appendChild(bookcover_img);
         
@@ -164,14 +165,14 @@ function displayBooks(library) {
         
 
         let delete_button = document.createElement('button');
-        delete_button.style.cssText = "color: white; background-color: lightgreen; height: 30px; margin: 10px;"
+        delete_button.style.cssText = "color: white; background-color: lightgreen; font-size: large; width: 80px; height: 40px; margin-right: 10px;"
         delete_button.textContent = "Delete";
         delete_button.setAttribute("class", "delete_button");
         let delete_id = "delete_" + String(x);
         delete_button.setAttribute("id", delete_id);
 
         let read_button = document.createElement("button");
-        read_button.style.cssText = "color: black; background-color: lightblue; height: 30px; margin: 10px;"
+        read_button.style.cssText = "color: black; background-color: lightblue; font-size: large; width: 90px; height: 40px; margin: 10px;"
         read_button.textContent = "UnRead";
         read_button.setAttribute("class", "read_button");
         let read_id = "read_" + String(x);
@@ -222,11 +223,11 @@ function displayBooks(library) {
 
             if(item.textContent == "UnRead") {
                  item.textContent = "READ";
-                 item.style.cssText = "color: white; background-color: navy; height: 30px; margin: 10px;"
+                 item.style.cssText = "color: white; background-color: navy; font-size: large; width: 90px; height: 40px; margin: 10px;"
 
             } else {
                 item.textContent = "UnRead"
-                item.style.cssText = "color: black; background-color: lightblue; height: 30px; margin: 10px;"
+                item.style.cssText = "color: black; background-color: lightblue; font-size: large; width: 90px; height: 40px; margin: 10px;"
             }
 
 

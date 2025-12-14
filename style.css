@@ -5,7 +5,8 @@ body {
 #add_button {
     color: white;
     background-color: lightgreen;
-    height: 30px;
-    margin: 10px;
+    height: 50px;
+    margin-bottom: 50px;
+    font-size: x-large;
 }
 
