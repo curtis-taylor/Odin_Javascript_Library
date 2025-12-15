@@ -10,9 +10,6 @@ const dialog_close_button = document.querySelector('#close');
         e.preventDefault();
         //e.stopPropagation();
         e.stopImmediatePropagation();
-        //console.log("add button clicked: ");
-
-        //console.log(myLibrary[0]);
 
         add_dialog.showModal();
 
@@ -56,19 +53,9 @@ function Book(title, author, pages, bookcover_url) {
     this.title = title;
     this.author = author;
     this.pages = pages;
-    // this.have_book = have_book;
+ 
     this.id = crypto.randomUUID();
     this.bookcover_url = bookcover_url;
-   
-    /*
-    this.info = function() {
-        const i = {title: title, author: author,
-            pages: pages, have_book: have_book, id: this.id
-        }
-        return i 
-    }; */
-   
-   
    
 }
 
@@ -82,7 +69,7 @@ function addBookToLibrary(title, author, pages, bookcover_url) {
 
     if((title.length > 0) && (author.length > 0) && (pages > 0) && (bookcover_url.length > 4)) {
         const book = new Book(title, author, pages, bookcover_url);
-        //console.log(book.info())
+        
          myLibrary.push(book);
 
         displayBooks(myLibrary);
@@ -92,107 +79,101 @@ function addBookToLibrary(title, author, pages, bookcover_url) {
     }
     
 
-    //console.log(myLibrary);
 }
 
 function displayBooks(library) {
 
     const book_container = document.querySelector('#page_container');
     book_container.setAttribute('style', 'display: grid; grid-template-columns: repeat(5, 1fr);');
-    
-    //console.log(library[library.length - 1])
-    //onsole.log("+++")
 
     let i = library[library.length - 1];
-
-    // console.log(book_container);
-
-    /*
-    if(book_container.children.length >= 1) {
-        book_container.replaceChildren();
-    } */
-     
-   // if(book_container.children.length < 1) {
-        let x = String(library.length);
-       // for(const i of library) {
-        //console.log("===================")
-        //console.log(i);
-        let book_div = document.createElement('div');
-        book_div.setAttribute("class", "book");
+   
+    let x = String(library.length);
+   
+    let book_div = document.createElement('div');
+    book_div.setAttribute("class", "book");
 
 
-        
-        while(checkIfIdExists(x) == true) {
-            x++;
-        } 
-
-        book_div.setAttribute("id", x);
-        book_div.style.cssText = "background-color: pink; height: 470px; width: 310px;"
-
-        let bookcover_div = document.createElement('div');
-        let bookcover_img = document.createElement('img');
-        bookcover_img.setAttribute('src', i.bookcover_url);
-        bookcover_img.style.cssText = "width: 199px; height: 300px;";
-
-        bookcover_div.appendChild(bookcover_img);
-        
-        let title_div = document.createElement('div');
-        title_div.setAttribute("class", "title");
-        title_div.style.fontFamily = "'Arial', sans-serif";
-        title_div.style.fontSize = "20px";
-        title_div.style.fontWeight = "bold";
-        title_div.textContent = i.title;
-        
-
-        let author_div = document.createElement('div');
-        author_div.setAttribute("class", "author");
-        author_div.style.fontSize = "18px";
-        author_div.textContent = i.author;
-        author_div.style.fontFamily = "'Arial', sans-serif";
-
-        let page_count_div = document.createElement('div');
-        page_count_div.setAttribute("class", "page_count");
-        page_count_div.style.fontSize = "18px";
-        page_count_div.style.fontFamily = "'Arial', sans-serif";
-
-        if(i.pages > 3000) {
-            page_count_div.textContent =  "3000+ pages";
-        } else {
-             page_count_div.textContent = i.pages + " pages";
-        }
-        
-
-        
-
-        let delete_button = document.createElement('button');
-        delete_button.style.cssText = "color: white; background-color: lightgreen; font-size: large; width: 80px; height: 40px; margin-right: 10px;"
-        delete_button.textContent = "Delete";
-        delete_button.setAttribute("class", "delete_button");
-        let delete_id = "delete_" + String(x);
-        delete_button.setAttribute("id", delete_id);
-
-        let read_button = document.createElement("button");
-        read_button.style.cssText = "color: black; background-color: lightblue; font-size: large; width: 90px; height: 40px; margin: 10px;"
-        read_button.textContent = "UnRead";
-        read_button.setAttribute("class", "read_button");
-        let read_id = "read_" + String(x);
-        read_button.setAttribute("id", read_id);
-
-
-        book_div.appendChild(bookcover_div);
-        book_div.appendChild(title_div);
-        book_div.appendChild(author_div);
-        book_div.appendChild(page_count_div);
-        book_div.appendChild(delete_button);
-        book_div.appendChild(read_button);
-
-        book_container.appendChild(book_div)
+    
+    while(checkIfIdExists(x) == true) {
         x++;
-    //    } 
+    } 
 
-        //console.log(book_container)
+    book_div.setAttribute("id", x);
+    book_div.style.cssText = "height: 470px; width: 310px;"
 
-  //  }
+    let bookcover_div = document.createElement('div');
+    let bookcover_img = document.createElement('img');
+    bookcover_img.setAttribute('src', i.bookcover_url);
+    bookcover_img.style.cssText = "width: 199px; height: 300px;";
+
+    bookcover_div.appendChild(bookcover_img);
+    
+    let title_div = document.createElement('div');
+    title_div.setAttribute("class", "title");
+    title_div.style.fontFamily = "'Arial', sans-serif";
+    title_div.style.fontSize = "20px";
+    title_div.style.fontWeight = "bold";
+
+    if(i.title.length < 20) {
+        title_div.textContent = i.title; 
+    } else{
+        title_div.textContent = i.title.slice(0, 18) + ".....";
+    }
+    
+
+    let author_div = document.createElement('div');
+    author_div.setAttribute("class", "author");
+    author_div.style.fontSize = "18px";
+    
+    author_div.style.fontFamily = "'Arial', sans-serif";
+
+    if(i.author.length < 20) {
+        author_div.textContent = i.author; 
+    } else{
+        author_div.textContent = i.author.slice(0, 18) + ".....";
+    }
+
+
+    let page_count_div = document.createElement('div');
+    page_count_div.setAttribute("class", "page_count");
+    page_count_div.style.fontSize = "18px";
+    page_count_div.style.fontFamily = "'Arial', sans-serif";
+
+    if(i.pages > 3000) {
+        page_count_div.textContent =  "3000+ pages";
+    } else {
+            page_count_div.textContent = i.pages + " pages";
+    }
+    
+
+    
+
+    let delete_button = document.createElement('button');
+    delete_button.style.cssText = "color: white; background-color: lightgreen; font-size: large; width: 80px; height: 40px; margin-right: 10px;"
+    delete_button.textContent = "Delete";
+    delete_button.setAttribute("class", "delete_button");
+    let delete_id = "delete_" + String(x);
+    delete_button.setAttribute("id", delete_id);
+
+    let read_button = document.createElement("button");
+    read_button.style.cssText = "color: black; background-color: lightblue; font-size: large; width: 90px; height: 40px; margin: 10px;"
+    read_button.textContent = "UnRead";
+    read_button.setAttribute("class", "read_button");
+    let read_id = "read_" + String(x);
+    read_button.setAttribute("id", read_id);
+
+
+    book_div.appendChild(bookcover_div);
+    book_div.appendChild(title_div);
+    book_div.appendChild(author_div);
+    book_div.appendChild(page_count_div);
+    book_div.appendChild(delete_button);
+    book_div.appendChild(read_button);
+
+    book_container.appendChild(book_div)
+    x++;
+
 
     // DELETE SECTION OF CHOSEN BOOK
     const delete_button_loc = document.querySelectorAll('.delete_button').forEach(item => {
@@ -206,7 +187,6 @@ function displayBooks(library) {
         
 
         parentNode = item.parentNode;
-        //console.log("button clicked: " + parentNode.id);
 
         test.removeChild(parentNode);
 
@@ -252,12 +232,9 @@ addBookToLibrary('Fahrenheit 451', 'Ray Bradbury', 500, "https://i.etsystatic.co
 addBookToLibrary('What Color Is Your Parachute?', 'Richard Nelson Bolles', 500, "https://cdn.kobo.com/book-images/9a247440-f0b4-4d97-945a-d05400c2a465/1200/1200/False/what-color-is-your-parachute-2020.jpg");
 
 addBookToLibrary('Romeo & Juliet', 'William Shakespeare', 150, "https://i.pinimg.com/736x/7d/a4/d0/7da4d06680ac41dbdcc0c02977b68de1.jpg");
-addBookToLibrary('The Richest Man In Babylon?', 'George S. Clason', 200, "https://deepstash.com/_next/image?url=https:%2F%2Fbooks.google.com%2Fbooks%2Fpublisher%2Fcontent%2Fimages%2Ffrontcover%2Ff1tXEAAAQBAJ%3Ffife%3Dw400&w=3840&q=75");
+addBookToLibrary('The Richest Man In Babylon', 'George S. Clason', 200, "https://deepstash.com/_next/image?url=https:%2F%2Fbooks.google.com%2Fbooks%2Fpublisher%2Fcontent%2Fimages%2Ffrontcover%2Ff1tXEAAAQBAJ%3Ffife%3Dw400&w=3840&q=75");
 
-console.log("::::::::::: " )
-console.log(myLibrary)
-
-//displayBooks(myLibrary);
+addBookToLibrary('Anne of Green Gables', 'L.M. Montgomery', 230, "https://cdn2.penguin.com.au/covers/original/9780141323749.jpg");
 
 
 
